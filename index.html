@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Factory | Restaurante </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    .maincontainer {
+        position: relative;
+        width: 250px;
+        height: 320px;
+        margin: 20px;
+        display: inline-block; 
+    }
+
+    .thecard {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        transform-style: preserve-3d;
+        transition: all 0.8s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .thecard:hover {
+        transform: rotateY(180deg);
+    }
+
+    .thefront, .theback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        backface-visibility: hidden;
+        overflow: hidden;
+    }
+
+    .thefront {
+        background: #fff;
+    }
+
+    .theback {
+        background: #fafafa;
+        color: #333;
+        text-align: center;
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .thefront img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .theback h1 {
+        font-family: 'zilla slab', sans-serif;
+        font-weight: bold;
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+    .theback p {
+        font-family: 'zilla slab', sans-serif;
+        font-weight: normal;
+        font-size: 12px;
+        padding: 0 10px;
+        text-align: center;
+    }
+    .card-container {
+             display: flex;
+              justify-content: center; 
+              align-items: center; 
+              flex-wrap: wrap; 
+        }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">Factory</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="#nosotros" class="nav-link">Nosotros</a>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="contactos.html" class="nav-link">sugerencias</a>
+        <a href="contac.html" class="nav-link">resumen</a>
+        <a href="entregas.html" class="nav-link">entregas</a>
+        
+
+    
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Factory</h1>
+      <button onclick="window.location.href='menu.html'">
+      <a href="#reservas" class="btn">se te antoja una?</a>
+      
+    </div>
+  </section>
+
+  <section class="section about" id="nosotros">
+    <div class="grid">
+        <div>
+            <h2>Nuestra Historia</h2>
+            <p>
+              Hace más de 20 años, un sueño comenzó a cocinarse en una pequeña parrilla de barrio. Lo que empezó 
+              como un modesto negocio familiar, pronto se convirtió en un referente culinario gracias al amor 
+              por la buena comida y el compromiso con la calidad. Desde el primer día, nuestro objetivo ha sido 
+              ofrecer una experiencia única, combinando recetas tradicionales con un toque moderno y fresco.
+            </p>
+        </div>
+        <div>
+            <h2>Nuestra Pasión</h2>
+            <p>
+                Las hamburguesas son más que un simple plato, son nuestra verdadera pasión. Cada una de nuestras 
+                creaciones está elaborada con ingredientes cuidadosamente seleccionados: carne de primera calidad, 
+                pan artesanal, vegetales frescos y nuestras salsas caseras, que aportan un sabor inigualable.
+            </p>
+            <p>
+                cada hamburguesa es una obra maestra que refleja nuestro amor por la cocina y nuestra dedicación a la 
+                excelencia.
+            </p>
+        </div>
+    </div>
+
+  
+    <div class="card-container">
+      <div class="maincontainer">
+          <div class="thecard">
+              <div class="thefront">
+                <img src="https://community-lens.storage.googleapis.com/preview-media/thumbnail_poster/3d47be3a-3952-4146-846f-1ad9cdba1653.jpg" alt="Imagen 1">
+              </div>
+              <div class="theback">
+                  <h1>adrian laime</h1>
+                  <p>Desarrollador de software con 5 años de experiencia en el sector.</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="maincontainer">
+          <div class="thecard">
+              <div class="thefront">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRalvc9kMwtJAURyruqKdfynknQ3qXz40UwUA&s" alt="Imagen 2">
+              </div>
+              <div class="theback">
+                  <h1>Maximiliano turdera</h1>
+                  <p>Diseñadora gráfica especializada en branding y marketing digital.</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="maincontainer">
+          <div class="thecard">
+              <div class="thefront">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVHtwtnWlI-PC9g6tQd8VwELAh26V6cexsSg&s" alt="Imagen 3">
+              </div>
+              <div class="theback">
+                  <h1>Cferch</h1>
+                  <p>Gerente de proyectos con un enfoque en la gestión de equipos.</p>
+              </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section menu" id="menu"> 
+    <h2>Nuestro Menú</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Yp_3VD4gUedewHql-Iugsi0y9VLD-FTxJA&s" alt="La Picante">
+        <div class="card-content">
+          <h3>La Picante</h3>
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <i class="far fa-star"></i>
+          </div>
+          <p>Hamburguesa con jalapeños, salsa habanero, lechuga fresca y tomate.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/b/hamburguesa-del-bbq-con-tocino-y-cebollas-71620383.jpg" alt="La BBQ">
+        <div class="card-content">
+          <h3>La BBQ</h3>
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>Hamburguesa con salsa BBQ, cebolla caramelizada y queso cheddar.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4P728yha6YYiR73YyJ0PcmBsF871Wx9_yrQ&s" alt="La Vegetariana">
+        <div class="card-content">
+          <h3>La Vegetariana</h3>
+          <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+          <p>Hamburguesa hecha con quinoa, portobello, aguacate y rúcula fresca.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer" id="contacto">
+    <div class="grid">
+      <div>
+        <h3>Ubicación</h3>
+        <p>Av. Principal 123</p>
+      </div>
+      <div>
+        <h3>Horarios</h3>
+        <p>Martes a Domingo, 12:00 - 23:00</p>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p>Tel: +123 456 789</p>
+        <p>Email: info@elasador.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js" defer></script>
+</body>
+</html>

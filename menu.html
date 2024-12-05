@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú | Factory</title>
+  <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="menu.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #c41e3a;
+      --secondary: #1a1a1a;
+      --light: #f5f5f5;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    body {
+      background-color: var(--light);
+    }
+    
+    .header {
+      background: rgba(0,0,0,0.9);
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary);
+    }
+    
+    .hero-section {
+      height: 60vh;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .swiper-slide {
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .slide-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    
+    .slide-content {
+      color: white;
+      z-index: 1;
+      padding: 20px;
+    }
+    
+    .slide-content h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 50px;
+    }
+    
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--secondary);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background: #a01830;
+    }
+    
+    .social-links {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: var(--secondary);
+      transition: transform 0.3s;
+    }
+    
+    .social-link:hover {
+      transform: translateX(10px);
+    }
+    
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+    
+    .social-icon i {
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    .footer {
+      background: var(--secondary);
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+    </style>
+
+</head>
+<body>
+  <<header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Factory</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-link">Inicio</a>
+                        <a href="#nosotros" class="nav-link">Nosotros</a>
+                        <a href="menu.html" class="nav-link">Menú</a>
+                        <a href="contactos.html" class="nav-link">Sugerencias</a>
+                        <a href="entregas.html" class="nav-link">Entregas</a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+  <div class="hero-carousel">
+    <div class="carousel-slide">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" alt="Hamburguesa">
+      <div class="carousel-content">
+        <h2>Nuestras Hamburguesas</h2>
+        <p>Las mejores hamburguesas artesanales</p>
+      </div>
+    </div>
+    <div class="carousel-slide">
+      <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2" alt="Alitas">
+      <div class="carousel-content">
+        <h2>Alitas BBQ</h2>
+        <p>Las más crujientes y sabrosas</p>
+      </div>
+    </div>
+    <div class="carousel-slide">
+      <img src="https://images.unsplash.com/photo-1550317138-10000687a72b" alt="Hamburguesa Vegetariana">
+      <div class="carousel-content">
+        <h2>Opciones Vegetarianas</h2>
+        <p>Deliciosas alternativas plant-based</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="category-buttons">
+    <button class="category-btn active" data-category="hamburguesas">Hamburguesas</button>
+    <button class="category-btn" data-category="vegetarianas">Vegetarianas</button>
+    <button class="category-btn" data-category="alitas">Alitas</button>
+  </div>
+
+  <div class="menu-container">
+    <section class="menu-section active" id="hamburguesas">
+      <h2>Hamburguesas</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828" alt="Hamburguesa Clásica">
+          <div class="menu-item-content">
+            <h3>Clásica con Tocino</h3>
+            <p>Carne premium, tocino crujiente, queso cheddar, lechuga y tomate</p>
+            <span class="price">BS40.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5" alt="Hamburguesa BBQ">
+          <div class="menu-item-content">
+            <h3>BBQ Especial</h3>
+            <p>Carne premium, salsa BBQ, aros de cebolla y queso gouda</p>
+            <span class="price">BS36.50</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://cdn0.uncomo.com/es/posts/9/4/4/hamburguesa_de_pavo_53449_3_orig.jpg" alt="Hamburguesa BBQ">
+          <div class="menu-item-content">
+            <h3>Verde Delicia</h3>
+            <p>Hamburguesa de lentejas, aguacate, queso de cabra y pesto</p>
+            <span class="price">BS42.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>      
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf27qZsbQZ_yNaeCxhTXpMtmsFL_0GL6VLnrBnkIgaX1meBJvXZgJMKPw2qemaNVXwP2U&usqp=CAU" alt="Hamburguesa BBQ">
+          <div class="menu-item-content">
+            <h3>Doble Queso Supremo</h3>
+            <p>Doble carne, triple queso cheddar, cebolla caramelizada y salsa especial</p>
+            <span class="price">BS48.50</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://restauranteventapazo.es/wp-content/uploads/2020/05/carnes-hamburguesa-VP.jpg" alt="Hamburguesa BBQ">
+          <div class="menu-item-content">
+            <h3>Fuego Jalapeño</h3>
+            <p>Carne picante, jalapeños frescos, queso pepper jack y salsa chipotle</p>
+            <span class="price">BS41.50</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://hips.hearstapps.com/hmg-prod/images/hamburguesa-elle-1644938053.jpg?crop=0.635xw:0.952xh;0.223xw,0.0264xh&resize=640:*" alt="Hamburguesa BBQ">
+          <div class="menu-item-content">
+            <h3>Deluxe Trufa</h3>
+            <p>Carne Angus, queso de trufa, champiñones salteados y rúcula</p>
+            <span class="price">BS55.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg" alt="Hamburguesa de la casa">
+          <div class="menu-item-content">
+            <h3>Especial de la casa</h3>
+            <p>Carne Angus, queso , champiñones salteados y salas secreta </p>
+            <span class="price">BS55.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgf2p6seiNPfS-F15PNlPpQF34Ujbz7TTs-w&s" alt="Hamburguesa La tapa Arterias">
+          <div class="menu-item-content">
+            <h3>Tapa arterias </h3>
+            <p>oan carne tocino cebolla caramelizada salsa bbq </p>
+            <span class="price">BS55.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <section class="menu-section" id="vegetarianas">
+      <h2>Vegetarianas</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360" alt="Beyond Burger">
+          <div class="menu-item-content">
+            <h3>Beyond Burger</h3>
+            <p>Hamburguesa plant-based con aguacate y vegetales frescos</p>
+            <span class="price">BS28.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1585991519035-72443f3920ee" alt="Portobello Burger">
+          <div class="menu-item-content">
+            <h3>Portobello Burger</h3>
+            <p>Champiñón portobello a la parrilla con pesto y mozzarella</p>
+            <span class="price">BS25.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx_gMqjP2vAVKlpkEeuzdm8etNWFBOSkjK3A&s" alt="Beyond Burger">
+          <div class="menu-item-content">
+            <h3>Quinoa Crisp</h3>
+            <p>Hamburguesa de quinoa y lentejas con mix de semillas y salsa de yogur vegano</p>
+            <span class="price">BS30.50</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://media.traveler.es/photos/65e9dfcd234e52531963fad6/1:1/w_738,h_738,c_limit/Argentinos.jpeg" alt="Beyond Burger">
+          <div class="menu-item-content">
+            <h3>Green Cheese</h3>
+            <p>Hamburguesa de brócoli y espinaca, queso vegano derretido y salsa pesto</p>
+            <span class="price">BS32.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://recetasdeusa.com/wp-content/uploads/2022/05/Hamburguesa-americana-1-scaled.jpg" alt="Beyond Burger">
+          div class="menu-item-content">
+            <h3>Falafel Verde</h3>
+            <p>Hamburguesa de falafel, tzatziki, pepino fresco y mix de hojas verdes</p>
+            <span class="price">BS27.50</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="alitas">
+      <h2>Alitas</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1608039755401-742074f0548d" alt="Alitas BBQ">
+          <div class="menu-item-content">
+            <h3>Alitas BBQ (6 piezas)</h3>
+            <p>Alitas bañadas en nuestra salsa BBQ especial</p>
+            <span class="price">BS36.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://d2j9trpqxd6hrn.cloudfront.net/uploads/recipe/picture/531/Como_hacer_Alitas_de_pollo_en_salsa_bbq.jpg" alt="Alitas Picantes">
+          <div class="menu-item-content">
+            <h3>Alitas Buffalo (6 piezas)</h3>
+            <p>Alitas extra picantes con salsa buffalo</p>
+            <span class="price">BS38.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://www.hola.com/horizon/landscape/18a020c81efd-aitas-de-pollo-a-la-americana-o-buffalo-wings-t.jpg" alt="Alitas Picantes">
+          <div class="menu-item-content">
+            <h3>Alitas BBQ Miel (6 piezas)</h3>
+            <p>Alitas jugosas bañadas en nuestra exclusiva salsa BBQ con un toque de miel dulce</p>
+            <span class="price">BS40.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <i class="far fa-star"></i>
+            </div> 
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://www.cocinista.es/download/bancorecursos/recetas/receta-alitas-sriracha-pimienta-negra.jpg" alt="Alitas Picantes">
+          <div class="menu-item-content">
+            <h3>Alitas Flaming Hot (6 piezas)</h3>
+            <p>Alitas extra picantes cubiertas con salsa Flaming Hot, para los más atrevidos</p>
+            <span class="price">BS42.00</span>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            
+          </div>
+        </div>
+
+      </div>
+      
+    </section>
+  </div>
+
+  <div class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+  </div>
+  
+  <div class="cart-modal minimized">
+    <div class="cart-header">
+      <h2>Tu Carrito</h2>
+      <div class="cart-close"><i class="fas fa-times"></i></div>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-total">
+      <h3>Total: $<span id="cart-total-amount">0.00</span></h3>
+
+    </div>
+  </div>
+  
+
+  <footer class="footer">
+    <h3>Factory</h3>
+    <p>Las mejores hamburguesas y alitas de la ciudad</p>
+    <p>Tel: +63117472</p>
+    <p>Email: info@elasador.com</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="menu.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

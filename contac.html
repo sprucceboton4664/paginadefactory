@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Pedido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://i.gifer.com/origin/56/56e81b4bcb19dc0f67fbe9b3c3f70309.gif') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+        }
+        .product-card h5 {
+            margin-bottom: 10px;
+        }
+        .option-btn, .remove-btn {
+            margin-top: 5px;
+        }
+        .total-price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .delivery-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Resumen de tu Pedido</h1>
+        <div id="order-summary"></div>
+        <div class="text-end">
+            <h4>Total: BS <span id="total-price">0.00</span></h4>
+        </div>
+        <button class="btn btn-danger delivery-btn" onclick="goToDelivery()">Ir a Entregas</button>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderSummaryContainer = document.getElementById('order-summary');
+            const totalPriceElement = document.getElementById('total-price');
+            const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+            let total = 0;
+
+            cartData.forEach((item, index) => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product-card');
+                productDiv.innerHTML = `
+                    <h5>${item.name}</h5>
+                    <p>Precio: BS ${item.price.toFixed(2)} x ${item.quantity}</p>
+                    <p>Subtotal: BS <span id="subtotal-${index}">${(item.price * item.quantity).toFixed(2)}</span></p>
+                    <div id="options-${index}"></div>
+                    <button class="btn btn-sm btn-secondary option-btn" onclick="addOption(${index}, 'Papas', 5)">Agregar Papas (+BS5)</button>
+                    <button class="btn btn-sm btn-secondary option-btn" onclick="addOption(${index}, 'Soda', 3)">Agregar Soda (+BS3)</button>
+                    <button class="btn btn-sm btn-secondary option-btn" onclick="addOption(${index}, 'Cebolla Caramelizada', 2)">Agregar Cebolla (+BS2)</button>
+                    <button class="btn btn-sm btn-secondary option-btn" onclick="addOption(${index}, 'Lechuga', 1)">Agregar Lechuga (+BS1)</button>
+    
+                    `;
+                orderSummaryContainer.appendChild(productDiv);
+                total += item.price * item.quantity;
+            });
+
+            totalPriceElement.textContent = total.toFixed(2);
+        });
+
+        function addOption(index, optionName, price) {
+            const optionsContainer = document.getElementById(`options-${index}`);
+            const subtotalElement = document.getElementById(`subtotal-${index}`);
+            const totalPriceElement = document.getElementById('total-price');
+
+            const optionDiv = document.createElement('div');
+            optionDiv.innerHTML = `
+                <span>${optionName}: BS ${price.toFixed(2)}</span>
+                <button class="btn btn-sm btn-danger remove-btn ms-2" onclick="removeOption(this, ${price})">Quitar</button>
+            `;
+            optionsContainer.appendChild(optionDiv);
+
+            const newSubtotal = parseFloat(subtotalElement.textContent) + price;
+            subtotalElement.textContent = newSubtotal.toFixed(2);
+
+            const newTotal = parseFloat(totalPriceElement.textContent) + price;
+            totalPriceElement.textContent = newTotal.toFixed(2);
+        }
+
+        function removeOption(button, price) {
+            const totalPriceElement = document.getElementById('total-price');
+
+            button.parentElement.remove();
+
+            const newTotal = parseFloat(totalPriceElement.textContent) - price;
+            totalPriceElement.textContent = newTotal.toFixed(2);
+        }
+
+        function goToDelivery() {
+            window.location.href = 'entregas.html';
+        }
+    </script>
+</body>
+</html>
